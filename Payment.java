@@ -18,5 +18,12 @@ public abstract class Payment {
         this.timestamp = new Date();
     }
 
+    protected boolean basicValidation() {
+        if (amount <= 0) return false;
+        if (!currency.equals("USD") && !currency.equals("EUR") && !currency.equals("GBP")) return false;
+        if (!customerInfo.containsKey("email")) return false;
+        return true;
+    }
+
     public abstract boolean validatePayment();
 }

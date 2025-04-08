@@ -10,9 +10,7 @@ public class CreditCardPayment extends Payment {
 
     @Override
     public boolean validatePayment() {
-        if (amount <= 0) return false;
-        if (!currency.equals("USD") && !currency.equals("EUR") && !currency.equals("GBP")) return false;
-        if (!customerInfo.containsKey("email")) return false;
+        if (!basicValidation()) return false;
         return paymentDetails.getOrDefault("card_number", "").length() >= 12;
     }
 }
