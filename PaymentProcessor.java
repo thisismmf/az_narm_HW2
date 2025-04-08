@@ -1,3 +1,9 @@
+/**
+ * Main payment orchestrator class.
+ * Responsible for creating payment instances, validating them,
+ * delegating processing to the appropriate service,
+ * and logging the result.
+ */
 public class PaymentProcessor {
     private final Map<String, String> config;
 
@@ -5,6 +11,15 @@ public class PaymentProcessor {
         this.config = config;
     }
 
+    /**
+     * Processes a payment end-to-end: creation, validation, execution, and logging.
+     * @param paymentTypeStr The payment type as a string.
+     * @param amount The transaction amount.
+     * @param currency The currency used (USD, EUR, GBP).
+     * @param customerInfo A map containing customer details.
+     * @param paymentDetails A map containing payment-specific fields.
+     * @return A map indicating the result of the payment process.
+     */
     public Map<String, String> processPayment(String paymentTypeStr, double amount, String currency,
                                               Map<String, String> customerInfo, Map<String, String> paymentDetails) {
         PaymentType paymentType;
@@ -26,6 +41,9 @@ public class PaymentProcessor {
         return result;
     }
 
+    /**
+     * Logs the transaction result in a structured format.
+     */
     private void logTransaction(String paymentType, double amount, String currency,
         Map<String, String> customerInfo, Map<String, String> paymentDetails,
         Map<String, String> result) {

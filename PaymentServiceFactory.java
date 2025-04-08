@@ -1,3 +1,7 @@
+/**
+ * Factory class for creating instances of PaymentService
+ * based on the payment type and external configuration.
+ */
 public class PaymentServiceFactory {
     private Map<String, String> config;
 
@@ -5,6 +9,12 @@ public class PaymentServiceFactory {
         this.config = config;
     }
 
+    /**
+     * Returns a PaymentService implementation suitable for the given type.
+     * @param paymentType The string identifier of the payment type.
+     * @return A PaymentService instance.
+     * @throws IllegalArgumentException for unknown types.
+     */
     public PaymentService getService(String paymentType) {
         switch (paymentType) {
             case "credit_card":

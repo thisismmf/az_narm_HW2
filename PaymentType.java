@@ -1,3 +1,7 @@
+/**
+ * Enum representing supported payment types in the system.
+ * Provides factory methods to create matching Payment and PaymentService instances.
+ */
 public enum PaymentType {
     CREDIT_CARD {
         @Override
@@ -36,11 +40,25 @@ public enum PaymentType {
         }
     };
 
+    /**
+     * Creates a payment instance with corresponding fields.
+     * @return A new Payment subclass instance.
+     */
     public abstract Payment createPayment(double amount, String currency,
                                           Map<String, String> customerInfo, Map<String, String> paymentDetails);
 
+    /**
+     * Creates a corresponding PaymentService for the payment type.
+     * @return A concrete implementation of PaymentService.
+     */
     public abstract PaymentService createService(Map<String, String> config);
 
+    /**
+     * Parses a string value into a PaymentType enum.
+     * @param value The string representation.
+     * @return Matching enum value.
+     * @throws IllegalArgumentException if value is unknown.
+     */
     public static PaymentType fromString(String value) {
         switch (value.toLowerCase()) {
             case "credit_card":
